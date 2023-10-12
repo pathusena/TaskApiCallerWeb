@@ -1,4 +1,5 @@
-﻿@model List<TaskModel>
+﻿@using static TaskApiCallerWeb.Models.Enum;
+@model List<TaskModel>
 @{
     ViewData["Title"] = "Tasks";
 }
@@ -8,6 +9,7 @@
         <div class="card-title">
             <h2>Tasks</h2>
         </div>
+        <button id="btnCreateTask" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#mdlCreateTask">Create Task</button>
         <table class="table">
             <thead class="thead-dark">
                 <tr>
@@ -38,3 +40,47 @@
         <div asp-validation-summary="All" class="text-danger"></div>
     </div>
 </div>
+
+<div id="mdlCreateTask" class="modal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Create Task</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="createTaskForm">
+                    <div class="form-group">
+                        <label for="Name">Task Name</label>
+                        <input id="txtName" name="Name" type="text" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label for="Description">Description</label>
+                        <input id="txtDescription" name="Description" type="text" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label for="Status">Status</label>
+                        <select name="Status" class="form-control">
+                            @foreach (var status in Enum.GetValues(typeof(StatusEnum)))
+                            {
+                                <option value="@status">@status</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="Created">Created Date</label>
+                        <input id="txtCreated" name="Created" type="date" class="form-control" />
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" id="btnSaveTask" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script type="text/javascript" src="~/js/task.js"></script>
+}

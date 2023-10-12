@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SampleTaskWeb.Models;
 using SampleTaskWeb.Services;
 
 namespace SampleTaskWeb.Controllers
@@ -30,6 +31,19 @@ namespace SampleTaskWeb.Controllers
             }
             return View();
 
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CreateTask(TaskModel task) {
+            var createdTask = await _taskApiService.SaveTask(task);
+            if (createdTask != null)
+            {
+                return Ok(createdTask);
+            }
+            else {
+                ModelState.AddModelError(string.Empty, "Failed to create task");
+            }
+            return NoContent();
         }
     }
 }

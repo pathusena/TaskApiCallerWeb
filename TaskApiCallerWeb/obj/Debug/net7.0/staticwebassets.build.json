@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "oSOp2jCt44un5N0/MffPe+fxaED/SX2sh6XCFhoegHQ=",
+  "Hash": "gniVALChV5opiFhzjQSuOELe6JEPCZe3gPpLxs7feqU=",
   "Source": "TaskApiCallerWeb",
   "BasePath": "_content/TaskApiCallerWeb",
   "Mode": "Default",
@@ -100,6 +100,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\site.js"
+    },
+    {
+      "Identity": "C:\\Sample Projects\\Practice\\TaskApiCallerWeb\\TaskApiCallerWeb\\wwwroot\\js\\task.js",
+      "SourceId": "TaskApiCallerWeb",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Sample Projects\\Practice\\TaskApiCallerWeb\\TaskApiCallerWeb\\wwwroot\\",
+      "BasePath": "_content/TaskApiCallerWeb",
+      "RelativePath": "js/task.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\task.js"
     },
     {
       "Identity": "C:\\Sample Projects\\Practice\\TaskApiCallerWeb\\TaskApiCallerWeb\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",

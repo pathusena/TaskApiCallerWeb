@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using SampleTaskWeb.Models;
+using System.Text;
 using System.Text.Json.Serialization;
 
 namespace SampleTaskWeb.Services
@@ -26,7 +27,34 @@ namespace SampleTaskWeb.Services
                 }
                 return new List<TaskModel>();
             } 
-            catch (HttpRequestException ex){
+            catch (HttpRequestException){
+                throw new Exception("API request failed. Check the API status.");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"API request failed: {ex.Message}", ex);
+            }
+
+        }
+
+        public async Task<TaskModel> SaveTask(TaskModel task) {
+            try {
+                var content = new StringContent(JsonConvert.SerializeObject(task), Encoding.UTF8, "application/json");
+
+                var response = await _httpClient.PostAsync(_httpClient.BaseAddress + "Task", content);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var createdTaskContent = await response.Content.ReadAsStringAsync();
+                    var createdTask = JsonConvert.DeserializeObject<TaskModel>(createdTaskContent);
+                    return createdTask;
+                }
+                else { 
+                    throw new Exception($"API request failed with status code {response.StatusCode}");
+                }
+            } 
+            catch (HttpRequestException ex)
+            {
                 throw new Exception("API request failed. Check the API status.");
             }
             catch (Exception ex)
